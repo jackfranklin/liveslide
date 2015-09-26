@@ -1,6 +1,7 @@
 import test from 'tape';
 import fs from 'fs';
 import parse, { Parser } from '../../lib/parse';
+import cleanWhitespace from 'clean-whitespace';
 
 test('Parsing the heading', (t) => {
   t.plan(1);
@@ -80,7 +81,7 @@ test('With two steps', (t) => {
   });
 });
 
-test.only('With a step that has a code change', (t) => {
+test('With a step that has a code change', (t) => {
   t.plan(1);
 
   const contents = fs.readFileSync('test/fixtures/basic-code.md', { encoding: 'utf8' });
@@ -103,10 +104,25 @@ test.only('With a step that has a code change', (t) => {
   });
 });
 
-test.skip('Parser can take some Markdown', (t) => {
+test('Parser can take some Markdown', (t) => {
   t.plan(1);
   const contents = fs.readFileSync('test/fixtures/slides.md', { encoding: 'utf8' });
   const result = parse(contents);
+  const expectedCode = `
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Open Sauce</title>
+    <script src="jspm_packages/system.js"></script>
+    <script src="config.js"></script>
+    <script>
+      System.import('app/main');
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+  `;
   t.deepEqual(result, {
     title: 'ES6 with jspm',
     steps: [
@@ -128,21 +144,7 @@ test.skip('Parser can take some Markdown', (t) => {
         changes: [
           {
             file: 'index.html',
-            code: `
-              <!DOCTYPE html>
-              <html>
-                <head>
-                  <title>Open Sauce</title>
-                  <script src="jspm_packages/system.js"></script>
-                  <script src="config.js"></script>
-                  <script>
-                    System.import('app/main');
-                  </script>
-                </head>
-                <body>
-                </body>
-              </html>
-            `,
+            code: cleanWhitespace(expectedCode.trim()),
             codeType: 'html',
           }
         ],

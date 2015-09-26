@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "clean-whitespace": "^0.1.2",
     "express": "^4.13.3",
     "jspm": "^0.16.10",
     "marked": "^0.3.5"
