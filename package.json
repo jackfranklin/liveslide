@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/babel-tape-runner test/**/*.test.js"
+    "test": "./node_modules/.bin/babel-tape-runner test/**/*.test.js",
+    "start": "./node_modules/.bin/babel-node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel": "^5.8.23",
     "clean-whitespace": "^0.1.2",
     "express": "^4.13.3",
     "jspm": "^0.16.10",
