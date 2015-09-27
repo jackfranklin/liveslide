@@ -13,6 +13,11 @@ app.get('/slides', (req, res) => {
   res.json({ contents, slides: parse(contents) });
 });
 
+app.get('/slides/:index', (req, res) => {
+  const contents = fs.readFileSync('slides.md', { encoding: 'utf8' });
+  res.json({ slide: parse(contents).steps[req.params.index] });
+});
+
 const server = http.createServer(app);
 
 server.listen(8123);
