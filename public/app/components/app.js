@@ -25,7 +25,6 @@ export default class App extends React.Component {
     return (
       <div>
         <h1>{ this.state.talk.title }</h1>
-        <Link to="/slides/0">START</Link>
         { this.props.children }
       </div>
     );

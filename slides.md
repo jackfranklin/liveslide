@@ -26,3 +26,20 @@
 
 - Don't forget to talk about each of the scripts and how we import them
 - use `jspm` Vim snippet to type this for you!
+
+### Change: app/main.js
+
+```js
+console.log('hello world');
+```
+
+## Writing some ES6
+
+- demonstrate how ES6 will get transpiled with jspm for you
+### Change: app/main.js
+
+```js
+fetchData().then((users) => {
+  console.log('user', user.name);
+});
+```
